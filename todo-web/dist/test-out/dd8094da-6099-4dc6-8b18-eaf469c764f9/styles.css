@@ -1,0 +1,12 @@
+/* src/styles.css */
+body {
+  background-image: url("./media/img.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* angular:styles/global:styles */
+/*# sourceMappingURL=styles.css.map */

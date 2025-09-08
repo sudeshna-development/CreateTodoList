@@ -1,0 +1,87 @@
+<div class="todo-container">
+  <h1>Todo List</h1>
+
+  <!-- Add new todo -->
+  <div class="add-todo">
+    <input 
+      type="text" 
+      [(ngModel)]="newTodoTitle" 
+      placeholder="Enter a new todo..." 
+      class="todo-input"
+      (keyup.enter)="addTodo()"
+    />
+    <button (click)="addTodo()" class="add-btn" [disabled]="!newTodoTitle.trim()">
+      Add
+    </button>
+  </div>
+
+  <!-- Loading indicator -->
+  <div *ngIf="isLoading" class="loading">Loading...</div>
+
+  <!-- Todo list -->
+  <div *ngIf="!isLoading" class="todo-list">
+    <div *ngIf="todos.length === 0" class="empty-message">
+      No todos yet. Add one above!
+    </div>
+    
+    <div *ngFor="let todo of todos" class="todo-item" [ngClass]="{'completed': todo.isCompleted}">
+      <input 
+        type="checkbox" 
+        [checked]="todo.isCompleted" 
+        (change)="toggleTodo(todo)"
+        class="todo-checkbox"
+      />
+      
+      <!-- Display mode -->
+      <span *ngIf="!isEditing(todo.id)" class="todo-title">{{ todo.title }}</span>
+      
+      <!-- Edit mode -->
+      <input 
+        *ngIf="isEditing(todo.id)"
+        type="text" 
+        [(ngModel)]="editingTitle" 
+        class="edit-input"
+        (keyup.enter)="saveEdit(todo)"
+        (keyup.escape)="cancelEdit()"
+      />
+      
+      <div class="todo-actions">
+        <!-- Edit/Save/Cancel buttons -->
+        <button 
+          *ngIf="!isEditing(todo.id)" 
+          (click)="startEdit(todo)" 
+          class="edit-btn"
+          [disabled]="todo.isCompleted"
+        >
+          Edit
+        </button>
+        
+        <button 
+          *ngIf="isEditing(todo.id)" 
+          (click)="saveEdit(todo)" 
+          class="save-btn"
+          [disabled]="!editingTitle.trim()"
+        >
+          Save
+        </button>
+        
+        <button 
+          *ngIf="isEditing(todo.id)" 
+          (click)="cancelEdit()" 
+          class="cancel-btn"
+        >
+          Cancel
+        </button>
+        
+        <!-- Delete button -->
+        <button 
+          *ngIf="!isEditing(todo.id)"
+          (click)="deleteTodo(todo.id)" 
+          class="delete-btn"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

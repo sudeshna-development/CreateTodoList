@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/styles.css"],
+  "sourcesContent": ["/* You can add global styles to this file, and also import other style files */\n\nbody {\n  background-image: url('app/asset/images/img.png');\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-attachment: fixed;\n  min-height: 100vh;\n}\n"],
+  "mappings": ";AAEA;AACE,oBAAkB;AAClB,mBAAiB;AACjB,uBAAqB;AACrB,qBAAmB;AACnB,yBAAuB;AACvB,cAAY;AACd;",
+  "names": []
+}
